@@ -1,0 +1,19 @@
+Place Dimension
+Temperature table: Nation code, Nation, Area, Area code, Continent, continent code   #the codes are numeric
+Economic table: none "world"
+Emission table: Nation, Iso 3166-1 alpha-3 (three letter nation code)  #232 nations
+Event table: ISO, Nation, subregion, location, latitude, longitude
+
+Final place Dimension
+
+Continent, Continent code, Area, Area code, Nation, nation code (ISO), subregion, location, latitude, longitude
+
+Time Dimension
+Temperature table: Year (1960-2019)
+Economic table: Year(1900-2020)
+Emission table: Year()
+Event table: Start Year, Start month, start day, end year, end month, end day
+
+Decade, Year, Month, day??
+
+

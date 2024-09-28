@@ -38,7 +38,7 @@ MISSING_STRING_2 ='Not specified'
 MISSING_NUMBER = 'Not_related'
 
 #ECONOMY TABLE -- CLEANING
-economy= pd.read_csv('economic-damage-from-natural-disasters.csv', encoding='latin1')
+economy= pd.read_csv('datasets/economic-damage-from-natural-disasters.csv', encoding='latin1')
 print (economy.columns)
 # Drop the 'Code' column since it's not useful in this dataset
 economy_cleaned = economy.drop(columns=['Code'])
@@ -51,12 +51,12 @@ economy_cleaned['Total economic damages'] = pd.to_numeric(economy_cleaned['Total
 missing_values = economy_cleaned.isnull().sum()
 
 # Save the cleaned dataset (optional)
-economy_cleaned.to_csv('cleaned_economic_damage.csv', index=False)
+economy_cleaned.to_csv('cleaned_datasets/cleaned_economic_damage.csv', index=False)
 
 print(economy_cleaned.head())  # Display the cleaned dataset
 
 #EMDAT TABLE --CLEANING
-events= pd.read_excel('public_emdat_custom_request_2024-06-26_65811dbf-f6a0-43b0-a0af-a151ab0b3ee7.xlsx')
+events= pd.read_excel('datasets/public_emdat_custom_request_2024-06-26_65811dbf-f6a0-43b0-a0af-a151ab0b3ee7.xlsx')
 print(events.columns)
 
 events_cleaned= events.drop(columns=['DisNo.', 'Historic', 'External IDs', 'Origin', 'Associated Types', 'River Basin','CPI', 'Admin Units', 'Entry Date', 'Last Update'])
@@ -91,7 +91,7 @@ events_cleaned['Insured Damage, Adjusted (\'000 US$)'].fillna(0, inplace=True)
 events_cleaned['Reconstruction Costs (\'000 US$)'].fillna(0, inplace=True)
 events_cleaned['Reconstruction Costs, Adjusted (\'000 US$)'].fillna(0, inplace=True)
 
-events_cleaned.to_csv('cleaned_emdat_dataset.csv', index=False)
+events_cleaned.to_csv('cleaned_datasets/cleaned_emdat_dataset.csv', index=False)
 
 missing_values_count = events_cleaned.isnull().sum()
 

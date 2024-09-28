@@ -6,6 +6,8 @@ from time import sleep
 # Initialize the geolocator
 geolocator = Nominatim(user_agent="geoapi")
 
+events= pd.read_excel('datasets/public_emdat_custom_request_2024-06-26_65811dbf-f6a0-43b0-a0af-a151ab0b3ee7.xlsx')
+
 # Function to get latitude and longitude for a given country
 def get_lat_long(location_name):
     try:

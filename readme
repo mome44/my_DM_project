@@ -1,0 +1,17 @@
+These are the folders
+- /datasets 
+   contains the raw datasets downloaded from the links
+- /cleaned_datasets
+   contains the dataset after the etl process
+- /db_tables
+   sql files for the snowflake schema
+- /utils
+   there are the configuration file for the sql database. Here there 
+   is also the generated json file containing the missing coordinates
+
+The first thing is to execute the coordinates.py file which generates the 
+missing coordinates given the location name. 
+Then one must execute the ETL.py files which modifies the datasets
+and fills in the cleaned_datasets
+Then the file db_py where the cleaned tables are added into sql
+and the 

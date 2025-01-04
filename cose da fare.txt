@@ -1,0 +1,5 @@
+Create la colonna duration nella tabella evento
+
+Rendere minuscolo:
+Month, Area, Country, Start Month
+ISO, ISO 3166-1 alpha-3

@@ -468,35 +468,35 @@ Drought;2021;15771027810
 Drought;2022;34909285710
 Drought;2023;21858848868
 Drought;2024;338823530
-Dry mass movement;1903;0
-Dry mass movement;1905;0
-Dry mass movement;1908;0
-Dry mass movement;1937;0
-Dry mass movement;1955;0
-Dry mass movement;1962;200000000
-Dry mass movement;1963;0
-Dry mass movement;1980;0
-Dry mass movement;1982;0
-Dry mass movement;1983;0
-Dry mass movement;1985;0
-Dry mass movement;1987;1000000
-Dry mass movement;1988;0
-Dry mass movement;1989;0
-Dry mass movement;1990;0
-Dry mass movement;1991;0
-Dry mass movement;1992;0
-Dry mass movement;1993;0
-Dry mass movement;2000;0
-Dry mass movement;2002;0
-Dry mass movement;2004;0
-Dry mass movement;2006;0
-Dry mass movement;2008;0
-Dry mass movement;2009;0
-Dry mass movement;2012;0
-Dry mass movement;2013;8000000
-Dry mass movement;2015;0
-Dry mass movement;2017;0
-Dry mass movement;2018;0
+Mass movement (dry);1903;0
+Mass movement (dry);1905;0
+Mass movement (dry);1908;0
+Mass movement (dry);1937;0
+Mass movement (dry);1955;0
+Mass movement (dry);1962;200000000
+Mass movement (dry);1963;0
+Mass movement (dry);1980;0
+Mass movement (dry);1982;0
+Mass movement (dry);1983;0
+Mass movement (dry);1985;0
+Mass movement (dry);1987;1000000
+Mass movement (dry);1988;0
+Mass movement (dry);1989;0
+Mass movement (dry);1990;0
+Mass movement (dry);1991;0
+Mass movement (dry);1992;0
+Mass movement (dry);1993;0
+Mass movement (dry);2000;0
+Mass movement (dry);2002;0
+Mass movement (dry);2004;0
+Mass movement (dry);2006;0
+Mass movement (dry);2008;0
+Mass movement (dry);2009;0
+Mass movement (dry);2012;0
+Mass movement (dry);2013;8000000
+Mass movement (dry);2015;0
+Mass movement (dry);2017;0
+Mass movement (dry);2018;0
 Earthquake;1900;0
 Earthquake;1901;0
 Earthquake;1902;25000000
@@ -683,127 +683,127 @@ Extreme temperature;2021;5600000000
 Extreme temperature;2022;0
 Extreme temperature;2023;550000000
 Extreme temperature;2024;0
-Extreme weather;1900;30000000
-Extreme weather;1902;0
-Extreme weather;1903;0
-Extreme weather;1904;0
-Extreme weather;1905;0
-Extreme weather;1906;20000000
-Extreme weather;1909;0
-Extreme weather;1910;0
-Extreme weather;1911;20000000
-Extreme weather;1912;35000000
-Extreme weather;1913;200000000
-Extreme weather;1914;0
-Extreme weather;1915;60000000
-Extreme weather;1916;0
-Extreme weather;1917;50000000
-Extreme weather;1918;0
-Extreme weather;1919;25000000
-Extreme weather;1920;0
-Extreme weather;1922;0
-Extreme weather;1923;10000000
-Extreme weather;1924;0
-Extreme weather;1925;18000000
-Extreme weather;1926;73000000
-Extreme weather;1927;22000000
-Extreme weather;1928;75000000
-Extreme weather;1929;55000000
-Extreme weather;1930;40000000
-Extreme weather;1931;7500000
-Extreme weather;1932;30000000
-Extreme weather;1933;3000000
-Extreme weather;1934;50000000
-Extreme weather;1935;8000000
-Extreme weather;1936;21000000
-Extreme weather;1937;0
-Extreme weather;1938;306000000
-Extreme weather;1939;0
-Extreme weather;1940;0
-Extreme weather;1941;40000000
-Extreme weather;1942;0
-Extreme weather;1943;0
-Extreme weather;1944;100000000
-Extreme weather;1945;400000000
-Extreme weather;1946;500000
-Extreme weather;1947;100000000
-Extreme weather;1948;18000000
-Extreme weather;1949;0
-Extreme weather;1950;101000000
-Extreme weather;1951;56250000
-Extreme weather;1952;52000000
-Extreme weather;1953;77000000
-Extreme weather;1954;831000000
-Extreme weather;1955;877000000
-Extreme weather;1956;0
-Extreme weather;1957;150000000
-Extreme weather;1958;0
-Extreme weather;1959;672200000
-Extreme weather;1960;454041000
-Extreme weather;1961;480400000
-Extreme weather;1962;1219000000
-Extreme weather;1963;879090000
-Extreme weather;1964;399150000
-Extreme weather;1965;1669400000
-Extreme weather;1966;306122000
-Extreme weather;1967;451200000
-Extreme weather;1968;61488000
-Extreme weather;1969;1568359000
-Extreme weather;1970;1064974000
-Extreme weather;1971;208389000
-Extreme weather;1972;2602920000
-Extreme weather;1973;539200000
-Extreme weather;1974;3123016992
-Extreme weather;1975;1464261000
-Extreme weather;1976;2820407000
-Extreme weather;1977;1160860008
-Extreme weather;1978;1446084000
-Extreme weather;1979;3503186000
-Extreme weather;1980;1794957000
-Extreme weather;1981;1718709000
-Extreme weather;1982;4500783032
-Extreme weather;1983;5434605000
-Extreme weather;1984;5482342000
-Extreme weather;1985;5830948000
-Extreme weather;1986;5040558008
-Extreme weather;1987;6569944904
-Extreme weather;1988;2426376000
-Extreme weather;1989;10353299000
-Extreme weather;1990;26208835000
-Extreme weather;1991;17536722984
-Extreme weather;1992;37598249744
-Extreme weather;1993;14383410992
-Extreme weather;1994;5392592000
-Extreme weather;1995;24996834000
-Extreme weather;1996;10757643032
-Extreme weather;1997;7523549559
-Extreme weather;1998;32964751377
-Extreme weather;1999;43336598008
-Extreme weather;2000;12949580000
-Extreme weather;2001;14545012064
-Extreme weather;2002;14749852000
-Extreme weather;2003;21359289616
-Extreme weather;2004;84227634104
-Extreme weather;2005;184787568046
-Extreme weather;2006;17708727922
-Extreme weather;2007;29558476296
-Extreme weather;2008;60728104040
-Extreme weather;2009;26134654976
-Extreme weather;2010;28124083240
-Extreme weather;2011;50872148232
-Extreme weather;2012;85786577720
-Extreme weather;2013;52602364248
-Extreme weather;2014;40220072312
-Extreme weather;2015;34452546016
-Extreme weather;2016;45811171064
-Extreme weather;2017;272589111333
-Extreme weather;2018;73724467163
-Extreme weather;2019;57637097744
-Extreme weather;2020;88192886016
-Extreme weather;2021;137648237536
-Extreme weather;2022;131046320969
-Extreme weather;2023;101779295823
-Extreme weather;2024;0
+Storm;1900;30000000
+Storm;1902;0
+Storm;1903;0
+Storm;1904;0
+Storm;1905;0
+Storm;1906;20000000
+Storm;1909;0
+Storm;1910;0
+Storm;1911;20000000
+Storm;1912;35000000
+Storm;1913;200000000
+Storm;1914;0
+Storm;1915;60000000
+Storm;1916;0
+Storm;1917;50000000
+Storm;1918;0
+Storm;1919;25000000
+Storm;1920;0
+Storm;1922;0
+Storm;1923;10000000
+Storm;1924;0
+Storm;1925;18000000
+Storm;1926;73000000
+Storm;1927;22000000
+Storm;1928;75000000
+Storm;1929;55000000
+Storm;1930;40000000
+Storm;1931;7500000
+Storm;1932;30000000
+Storm;1933;3000000
+Storm;1934;50000000
+Storm;1935;8000000
+Storm;1936;21000000
+Storm;1937;0
+Storm;1938;306000000
+Storm;1939;0
+Storm;1940;0
+Storm;1941;40000000
+Storm;1942;0
+Storm;1943;0
+Storm;1944;100000000
+Storm;1945;400000000
+Storm;1946;500000
+Storm;1947;100000000
+Storm;1948;18000000
+Storm;1949;0
+Storm;1950;101000000
+Storm;1951;56250000
+Storm;1952;52000000
+Storm;1953;77000000
+Storm;1954;831000000
+Storm;1955;877000000
+Storm;1956;0
+Storm;1957;150000000
+Storm;1958;0
+Storm;1959;672200000
+Storm;1960;454041000
+Storm;1961;480400000
+Storm;1962;1219000000
+Storm;1963;879090000
+Storm;1964;399150000
+Storm;1965;1669400000
+Storm;1966;306122000
+Storm;1967;451200000
+Storm;1968;61488000
+Storm;1969;1568359000
+Storm;1970;1064974000
+Storm;1971;208389000
+Storm;1972;2602920000
+Storm;1973;539200000
+Storm;1974;3123016992
+Storm;1975;1464261000
+Storm;1976;2820407000
+Storm;1977;1160860008
+Storm;1978;1446084000
+Storm;1979;3503186000
+Storm;1980;1794957000
+Storm;1981;1718709000
+Storm;1982;4500783032
+Storm;1983;5434605000
+Storm;1984;5482342000
+Storm;1985;5830948000
+Storm;1986;5040558008
+Storm;1987;6569944904
+Storm;1988;2426376000
+Storm;1989;10353299000
+Storm;1990;26208835000
+Storm;1991;17536722984
+Storm;1992;37598249744
+Storm;1993;14383410992
+Storm;1994;5392592000
+Storm;1995;24996834000
+Storm;1996;10757643032
+Storm;1997;7523549559
+Storm;1998;32964751377
+Storm;1999;43336598008
+Storm;2000;12949580000
+Storm;2001;14545012064
+Storm;2002;14749852000
+Storm;2003;21359289616
+Storm;2004;84227634104
+Storm;2005;184787568046
+Storm;2006;17708727922
+Storm;2007;29558476296
+Storm;2008;60728104040
+Storm;2009;26134654976
+Storm;2010;28124083240
+Storm;2011;50872148232
+Storm;2012;85786577720
+Storm;2013;52602364248
+Storm;2014;40220072312
+Storm;2015;34452546016
+Storm;2016;45811171064
+Storm;2017;272589111333
+Storm;2018;73724467163
+Storm;2019;57637097744
+Storm;2020;88192886016
+Storm;2021;137648237536
+Storm;2022;131046320969
+Storm;2023;101779295823
+Storm;2024;0
 Flood;1900;0
 Flood;1903;480000000
 Flood;1906;0
@@ -991,94 +991,94 @@ Volcanic activity;2021;1345000000
 Volcanic activity;2022;118000000
 Volcanic activity;2023;0
 Volcanic activity;2024;0
-Wet mass movement;1909;0
-Wet mass movement;1910;0
-Wet mass movement;1915;0
-Wet mass movement;1922;0
-Wet mass movement;1923;0
-Wet mass movement;1926;0
-Wet mass movement;1930;0
-Wet mass movement;1931;0
-Wet mass movement;1932;0
-Wet mass movement;1934;0
-Wet mass movement;1936;0
-Wet mass movement;1938;0
-Wet mass movement;1941;0
-Wet mass movement;1948;0
-Wet mass movement;1949;0
-Wet mass movement;1950;0
-Wet mass movement;1951;20000000
-Wet mass movement;1952;0
-Wet mass movement;1954;0
-Wet mass movement;1955;0
-Wet mass movement;1956;0
-Wet mass movement;1958;0
-Wet mass movement;1959;0
-Wet mass movement;1960;0
-Wet mass movement;1961;0
-Wet mass movement;1962;0
-Wet mass movement;1963;0
-Wet mass movement;1964;0
-Wet mass movement;1965;0
-Wet mass movement;1966;27000
-Wet mass movement;1967;0
-Wet mass movement;1968;0
-Wet mass movement;1969;0
-Wet mass movement;1970;0
-Wet mass movement;1971;0
-Wet mass movement;1972;0
-Wet mass movement;1973;0
-Wet mass movement;1974;21700000
-Wet mass movement;1975;0
-Wet mass movement;1976;100000000
-Wet mass movement;1977;11000000
-Wet mass movement;1978;0
-Wet mass movement;1979;2466000
-Wet mass movement;1980;0
-Wet mass movement;1981;0
-Wet mass movement;1982;700000000
-Wet mass movement;1983;988800000
-Wet mass movement;1984;43000000
-Wet mass movement;1985;0
-Wet mass movement;1986;0
-Wet mass movement;1987;625800000
-Wet mass movement;1988;0
-Wet mass movement;1989;423341000
-Wet mass movement;1990;0
-Wet mass movement;1991;6400000
-Wet mass movement;1992;432100000
-Wet mass movement;1993;968490000
-Wet mass movement;1994;62300000
-Wet mass movement;1995;36289000
-Wet mass movement;1996;20000000
-Wet mass movement;1997;16300000
-Wet mass movement;1998;918700000
-Wet mass movement;1999;749100000
-Wet mass movement;2000;462000000
-Wet mass movement;2001;70600000
-Wet mass movement;2002;192500000
-Wet mass movement;2003;49511000
-Wet mass movement;2004;5950000
-Wet mass movement;2005;55000000
-Wet mass movement;2006;40146000
-Wet mass movement;2007;0
-Wet mass movement;2008;0
-Wet mass movement;2009;159000000
-Wet mass movement;2010;1417078000
-Wet mass movement;2011;0
-Wet mass movement;2012;0
-Wet mass movement;2013;0
-Wet mass movement;2014;273000000
-Wet mass movement;2015;8000000
-Wet mass movement;2016;725000000
-Wet mass movement;2017;147300000
-Wet mass movement;2018;928036000
-Wet mass movement;2019;200000000
-Wet mass movement;2020;130000000
-Wet mass movement;2021;250000000
-Wet mass movement;2022;0
-Wet mass movement;2023;0
-Wet mass movement;2024;88110000
+Mass movement (wet);1909;0
+Mass movement (wet);1910;0
+Mass movement (wet);1915;0
+Mass movement (wet);1922;0
+Mass movement (wet);1923;0
+Mass movement (wet);1926;0
+Mass movement (wet);1930;0
+Mass movement (wet);1931;0
+Mass movement (wet);1932;0
+Mass movement (wet);1934;0
+Mass movement (wet);1936;0
+Mass movement (wet);1938;0
+Mass movement (wet);1941;0
+Mass movement (wet);1948;0
+Mass movement (wet);1949;0
+Mass movement (wet);1950;0
+Mass movement (wet);1951;20000000
+Mass movement (wet);1952;0
+Mass movement (wet);1954;0
+Mass movement (wet);1955;0
+Mass movement (wet);1956;0
+Mass movement (wet);1958;0
+Mass movement (wet);1959;0
+Mass movement (wet);1960;0
+Mass movement (wet);1961;0
+Mass movement (wet);1962;0
+Mass movement (wet);1963;0
+Mass movement (wet);1964;0
+Mass movement (wet);1965;0
+Mass movement (wet);1966;27000
+Mass movement (wet);1967;0
+Mass movement (wet);1968;0
+Mass movement (wet);1969;0
+Mass movement (wet);1970;0
+Mass movement (wet);1971;0
+Mass movement (wet);1972;0
+Mass movement (wet);1973;0
+Mass movement (wet);1974;21700000
+Mass movement (wet);1975;0
+Mass movement (wet);1976;100000000
+Mass movement (wet);1977;11000000
+Mass movement (wet);1978;0
+Mass movement (wet);1979;2466000
+Mass movement (wet);1980;0
+Mass movement (wet);1981;0
+Mass movement (wet);1982;700000000
+Mass movement (wet);1983;988800000
+Mass movement (wet);1984;43000000
+Mass movement (wet);1985;0
+Mass movement (wet);1986;0
+Mass movement (wet);1987;625800000
+Mass movement (wet);1988;0
+Mass movement (wet);1989;423341000
+Mass movement (wet);1990;0
+Mass movement (wet);1991;6400000
+Mass movement (wet);1992;432100000
+Mass movement (wet);1993;968490000
+Mass movement (wet);1994;62300000
+Mass movement (wet);1995;36289000
+Mass movement (wet);1996;20000000
+Mass movement (wet);1997;16300000
+Mass movement (wet);1998;918700000
+Mass movement (wet);1999;749100000
+Mass movement (wet);2000;462000000
+Mass movement (wet);2001;70600000
+Mass movement (wet);2002;192500000
+Mass movement (wet);2003;49511000
+Mass movement (wet);2004;5950000
+Mass movement (wet);2005;55000000
+Mass movement (wet);2006;40146000
+Mass movement (wet);2007;0
+Mass movement (wet);2008;0
+Mass movement (wet);2009;159000000
+Mass movement (wet);2010;1417078000
+Mass movement (wet);2011;0
+Mass movement (wet);2012;0
+Mass movement (wet);2013;0
+Mass movement (wet);2014;273000000
+Mass movement (wet);2015;8000000
+Mass movement (wet);2016;725000000
+Mass movement (wet);2017;147300000
+Mass movement (wet);2018;928036000
+Mass movement (wet);2019;200000000
+Mass movement (wet);2020;130000000
+Mass movement (wet);2021;250000000
+Mass movement (wet);2022;0
+Mass movement (wet);2023;0
+Mass movement (wet);2024;88110000
 Wildfire;1911;0
 Wildfire;1918;100000000
 Wildfire;1922;8000000

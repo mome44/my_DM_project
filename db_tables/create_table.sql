@@ -1,5 +1,5 @@
 CREATE TABLE date_dim (
-    date_id SERIAL PRIMARY KEY,
+    date_id integer PRIMARY KEY,
     decade INT,
     ev_year INT,
     month_int INT,
@@ -9,15 +9,13 @@ CREATE TABLE date_dim (
 );
 
 CREATE TABLE location_dim (
-    location_id SERIAL PRIMARY KEY,
+    location_id integer PRIMARY KEY,
     continent TEXT,
-    continent_code TEXT,
+    continent_id TEXT,
     area TEXT, 
-    area_code TEXT, 
+    area_id TEXT, 
     nation TEXT, 
     nation_iso TEXT,
-    region TEXT,
-    subregion TEXT,
     location_name TEXT,
     latitude DOUBLE PRECISION,
     longitude DOUBLE PRECISION,
@@ -25,7 +23,7 @@ CREATE TABLE location_dim (
 );
 
 CREATE TABLE event_type_dim (
-    event_type_id SERIAL PRIMARY KEY,
+    event_type_id integer PRIMARY KEY,
     disaster_group TEXT,
     disaster_subgroup TEXT,
     disaster_type TEXT,
@@ -41,9 +39,9 @@ CREATE TABLE event_type_dim (
 );
 
 CREATE TABLE temperature_dim(
-    id SERIAL PRIMARY KEY,
-    ev_year INT, 
-    nation_iso TEXT, 
+    temperature_id integer PRIMARY KEY,
+    ev_year INT, -- in common with date dimension
+    nation_iso TEXT, -- in common with location dimension
     temperature_change double precision,
     standard_deviation double precision,
     coal_emission INT,
@@ -60,19 +58,20 @@ CREATE TABLE event_fact (
     date_id INT ,
     location_id INT ,
     event_type_id INT ,
-    total_deaths BIGINT,  -- Change INT to BIGINT if necessary
-    num_injured BIGINT,   -- Change INT to BIGINT if necessary
-    num_affected BIGINT,  -- Change INT to BIGINT if necessary
-    num_homeless BIGINT,  -- Change INT to BIGINT if necessary
-    total_affected BIGINT,-- Change INT to BIGINT if necessary
-    aid_contribution BIGINT, -- Change INT to BIGINT if necessary
-    reconstruction_cost BIGINT, -- Change INT to BIGINT if necessary
-    reconstruction_cost_adjusted BIGINT, -- Change INT to BIGINT if necessary
-    insured_damage BIGINT, -- Change INT to BIGINT if necessary
-    insured_damage_adjusted BIGINT, -- Change INT to BIGINT if necessary
-    total_damage BIGINT, -- Change INT to BIGINT if necessary
-    total_damage_adjusted BIGINT -- Change INT to BIGINT if necessary
+    total_deaths BIGINT,  
+    num_injured BIGINT,   
+    num_affected BIGINT,  
+    num_homeless BIGINT,  
+    total_affected BIGINT,
+    aid_contribution BIGINT, 
+    reconstruction_cost BIGINT, 
+    reconstruction_cost_adjusted BIGINT,
+    insured_damage BIGINT, 
+    insured_damage_adjusted BIGINT, 
+    total_damage BIGINT, 
+    total_damage_adjusted BIGINT,
+    FOREIGN KEY (event_type_id) REFERENCES event_type_dim(event_type_id),
+    FOREIGN KEY (date_id) REFERENCES date_dim(date_id),
+    FOREIGN KEY (location_id) REFERENCES location_dim(location_id)
 );
 
-
--- REFERENCES event_type_dim(event_type_id),

@@ -50,7 +50,7 @@ def load_location_coords(path):
 
 def clean_event(event):
     #First I deleted all the non relevant columns for example the fields related to admins and to the update of the old table
-    events_cleaned = event.drop(columns=['Historic', 'External IDs', 'Origin', 'Associated Types', 'River Basin','CPI', 
+    event_cleaned = event.drop(columns=['Historic', 'External IDs', 'Origin', 'Associated Types', 'River Basin','CPI', 
                                          'Admin Units', 'Entry Date', 'Last Update', 'DisNo.', 'Classification Key'])
     
     #Since all the columns were in the string format I ensured that I converted all the appropriate columns into numeric
@@ -59,73 +59,83 @@ def clean_event(event):
                      ,'Total Damage (\'000 US$)', 'Insured Damage (\'000 US$)','Insured Damage, Adjusted (\'000 US$)', 'Reconstruction Costs (\'000 US$)'
                      , 'Reconstruction Costs, Adjusted (\'000 US$)']
     for col in numeric_columns:
-        events_cleaned[col] = pd.to_numeric(events_cleaned[col], errors='coerce')
+        event_cleaned[col] = pd.to_numeric(event_cleaned[col], errors='coerce')
 
     #I fill the null values witht the missing string 'Not specified'
-    events_cleaned['Location']=events_cleaned['Location'].fillna(MISSING_STRING_2)
+    event_cleaned['Location']=event_cleaned['Location'].fillna(MISSING_STRING_2)
     #Since locations can have more than one place separated by a coma I created an array by using split
-    events_cleaned['Location']=events_cleaned['Location'].str.split(',')
+    event_cleaned['Location']=event_cleaned['Location'].str.split(',')
     #Explode creates a new row for each one of the value in each location array
-    events_cleaned = events_cleaned.explode('Location')
+    event_cleaned = event_cleaned.explode('Location')
     #I remove the right and left spaces from the locations, that are left since the split
-    events_cleaned['Location']=events_cleaned['Location'].str.strip()
+    event_cleaned['Location']=event_cleaned['Location'].str.strip()
 
     #I noticed that the coordinates have a lot of empty values, in order to solve that I used the json file containing 
     #the appropriate coordinates for each location that I created in the coordinates.py file
     location_coords=load_location_coords('utils/country_coords.json')
 
-    for idx, row in events_cleaned.iterrows():
+    for idx, row in event_cleaned.iterrows():
         if pd.isnull(row['Latitude']) or pd.isnull(row['Longitude']):
             lat, lon = location_coords.get(str(idx))
             lat = lat.replace(',', '.')
             lon = lon.replace(',', '.')
-            events_cleaned.at[idx, 'Latitude'] = float(lat)
-            events_cleaned.at[idx, 'Longitude'] = float(lon)
+            event_cleaned.at[idx, 'Latitude'] = float(lat)
+            event_cleaned.at[idx, 'Longitude'] = float(lon)
             #I do a loop in the elements and check whether the element in the table is null
             #then I extract the result and insert it into the row after converting it into a float value
 
-    events_cleaned['Magnitude']= events_cleaned['Magnitude'].astype(float)
+    event_cleaned['Magnitude']= event_cleaned['Magnitude'].astype(float)
 
 
-    events_cleaned['ISO'] = events_cleaned['ISO'].str.lower()
+    event_cleaned['ISO'] = event_cleaned['ISO'].str.lower()
     
     date_columns = ['Start Year','Start Month', 'Start Day','End Year', 'End Month', 'End Day']
 
     # Print missing values for the specified columns
     for column in date_columns:
         if column in ['Start Year','Start Month', 'Start Day']:
-            events_cleaned[column] = events_cleaned[column].fillna(MISSING_NUMBER+1)
-        events_cleaned[column] = events_cleaned[column].astype('Int64')
+            event_cleaned[column] = event_cleaned[column].fillna(MISSING_NUMBER+1)
+        event_cleaned[column] = event_cleaned[column].astype('Int64')
    
-    events_cleaned['End Month']=events_cleaned['End Month'].fillna(events_cleaned['Start Month'])
-    events_cleaned['End Day']=events_cleaned['End Day'].fillna(events_cleaned['Start Day'])
+    event_cleaned['End Month']=event_cleaned['End Month'].fillna(event_cleaned['Start Month'])
+    event_cleaned['End Day']=event_cleaned['End Day'].fillna(event_cleaned['Start Day'])
         
-    events_cleaned['start_date'] = pd.to_datetime(
-        events_cleaned[['Start Year', 'Start Month', 'Start Day']].astype(str).agg('-'.join, axis=1),
+    event_cleaned['start_date'] = pd.to_datetime(
+        event_cleaned[['Start Year', 'Start Month', 'Start Day']].astype(str).agg('-'.join, axis=1),
         format='%Y-%m-%d',
         errors='coerce'
     )
     
-    events_cleaned['end_date'] = pd.to_datetime(
-        events_cleaned[['End Year', 'End Month', 'End Day']].astype(str).agg('-'.join, axis=1),
+    event_cleaned['end_date'] = pd.to_datetime(
+        event_cleaned[['End Year', 'End Month', 'End Day']].astype(str).agg('-'.join, axis=1),
         format='%Y-%m-%d',
         errors='coerce'
     )
   
 
-    events_cleaned['duration'] = (events_cleaned['end_date'] - events_cleaned['start_date']).dt.days
+    event_cleaned['duration'] = (event_cleaned['end_date'] - event_cleaned['start_date']).dt.days
 
-    events_cleaned = events_cleaned.drop(columns=['start_date', 'End Year', 'End Month', 'End Day'])
-
-    #For better clarity I inserted the Start month and the end month also in the string format
     
-    events_cleaned.rename(columns={'Start Month': 'Start Month Number'}, inplace=True)
-    events_cleaned['Start Month'] = events_cleaned['Start Month Number'].map(INT_MONTH)
+
+    event_cleaned['duration'] = event_cleaned['duration'].replace(0, 1)
+    
+    print(event_cleaned[['duration']])
+
+    event_cleaned = event_cleaned.drop(columns=['start_date', 'End Year', 'End Month', 'End Day'])
+    event_cleaned= event_cleaned.rename(columns={'Region':'continent', 'Subregion':'area'})
+    #For better clarity I inserted the Start month and the end month also in the string format
+    event_cleaned['continent_id'] = pd.factorize(event_cleaned['continent'])[0]
+    event_cleaned['area_id'] = pd.factorize(event_cleaned['area'])[0]
+
+    event_cleaned['global_name']= 'World'
+
+    event_cleaned.rename(columns={'Start Month': 'Start Month Number'}, inplace=True)
+    event_cleaned['Start Month'] = event_cleaned['Start Month Number'].map(INT_MONTH)
 
     #I apply the normalize_table function
-    events_cleaned=normalize_table(events_cleaned)
+    event_cleaned=normalize_table(event_cleaned)
 
-    return events_cleaned
+    return event_cleaned
 
 def clean_economy(economy):
     #The cleaning of the economy table is very simple I drop the code columns
@@ -222,8 +232,6 @@ def complete_event(event, economy):
                                                "insured_damage,_adjusted_(\'000_us$)":"insured_damage_adjusted", 'total_economic_damages': 'total_damage',
                                                "total_damage,_adjusted_(\'000_us$)": "total_damage_adjusted",
                                                 "start_year":"ev_year", "start_month":"month_string", "start_month_number":"month_int", "start_day":"ev_day"}, inplace=True)
-    
-    merged_table['nation_iso']=merged_table['nation_iso'].astype(str)
     return merged_table
 
 if __name__=='__main__':

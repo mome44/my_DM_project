@@ -9,9 +9,14 @@ These are the folders
    there are the configuration file for the sql database. Here there 
    is also the generated json file containing the missing coordinates
 
-The first thing is to execute the coordinates.py file which generates the 
-missing coordinates given the location name. 
-Then one must execute the ETL.py files which modifies the datasets
-and fills in the cleaned_datasets
-Then the file db_py where the cleaned tables are added into sql
-and the 
+The first optional thing is to execute the coordinates.py file which generates the file country_coords.json in the /utils folder which getts the missing coordinates given the location name.  
+(I recommend not to execute it, since it takes a really long time 1:30h)
+
+Then one must execute the ETL.py files which modifies the datasets by performing the extraction, cleansing and transformation operation
+outputting the cleaned dataset in the /cleaned_datasets folder
+
+Then one must execute the file db.py where there is the loading phase, the table are unified and then are added into postgresql.
+The data for the connection (made using pgadmin) is in the utils/config.js file.
+
+The file query_display.py performs the queries in the folder /db_tables
+and plots their relative graphs to better explain the output.

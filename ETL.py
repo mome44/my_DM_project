@@ -69,6 +69,7 @@ def clean_event(event):
     event_cleaned = event_cleaned.explode('Location')
     #I remove the right and left spaces from the locations, that are left since the split
     event_cleaned['Location']=event_cleaned['Location'].str.strip()
+    event_cleaned = event_cleaned[event_cleaned['Location'] != '']
 
     #I noticed that the coordinates have a lot of empty values, in order to solve that I used the json file containing 
     #the appropriate coordinates for each location that I created in the coordinates.py file
@@ -118,8 +119,6 @@ def clean_event(event):
     
 
     event_cleaned['duration'] = event_cleaned['duration'].replace(0, 1)
-    
-    print(event_cleaned[['duration']])
 
     event_cleaned = event_cleaned.drop(columns=['start_date', 'End Year', 'End Month', 'End Day'])
     event_cleaned= event_cleaned.rename(columns={'Region':'continent', 'Subregion':'area'})
@@ -170,10 +169,11 @@ def clean_temperature(temperature):
     cleaned_temperature=cleaned_temperature.drop(columns=['Area Code', 'Months Code'])
     #I add my own version of the month number
     cleaned_temperature['Month Number'] = cleaned_temperature['Months'].map(MONTH_INT)
-
+   
+    cleaned_temperature = cleaned_temperature.dropna(subset=['Month Number'])
+    #I drop the eventual null rows that contained trimester/semester
     cleaned_temperature['Month Number'] =cleaned_temperature['Month Number'].astype('Int64')
-    numeric_cols= ["Temperature Change", 
-        "Standard Deviation"]
+    numeric_cols= ["Temperature Change",  "Standard Deviation"]
     for c in numeric_cols:
         cleaned_temperature[c] = pd.to_numeric(cleaned_temperature[c], errors='coerce')
     cleaned_temperature.columns = cleaned_temperature.columns.str.lower().str.replace(' ', '_')
@@ -265,6 +265,5 @@ if __name__=='__main__':
     #Joining event and economy table
     event_economy_integrated= complete_event(event_cleaned, economy_cleaned)
     event_economy_integrated.to_csv('cleaned_datasets/cleaned_event_econ.csv', sep=';', decimal=',', index=False)
-
     
     

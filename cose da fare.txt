@@ -1,1 +1,3 @@
 Scrivere delle query importanti
+
+vedere se ci sono valori nulli e capire perché ci sono

@@ -35,13 +35,16 @@ def generate_coords(table):
         lat = None
         lon = None
         print(location, country, iso_code)
+
         if pd.notnull(location):
             lat, lon = get_coordinates(location)
             print(f"Attempt for Location '{location}': {lat}, {lon}")
+
         if (lat is None) and (lon is None) and pd.notnull(country):
             print(f"Location '{location}' not found. Retrying with Country: {country}")
             lat, lon = get_coordinates(country)
             print(f"Attempt for Country '{country}': {lat}, {lon}")
+
         if (lat is None) and (lon is None) and pd.notnull(iso_code):
             print(f"Country '{country}' not found. Retrying with ISO: {iso_code}")
             lat, lon = get_coordinates(iso_code)
@@ -52,8 +55,10 @@ def generate_coords(table):
             lon = str(lon).replace('.', ',')
 
         if index_row % 450 == 0:
+            #print the timestamp
             current_time = datetime.now().strftime("%H:%M:%S")
             print(f"{index_row/45000 *100}% -- {current_time}")
+
         location_coords[index_row] = (lat, lon)
         index_row+=1
         sleep(1)

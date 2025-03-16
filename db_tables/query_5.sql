@@ -1,16 +1,7 @@
---Most Affected Nations by Disaster Type
-SELECT 
-    l.nation, 
-    e.disaster_type, 
-    SUM(f.total_affected) AS total_affected
-FROM 
-    event_fact f
-JOIN 
-    location_dim l ON f.location_id = l.location_id
-JOIN 
-    event_type_dim e ON f.event_type_id = e.event_type_id
-GROUP BY 
-    l.nation, e.disaster_type
-ORDER BY 
-    total_affected DESC
-LIMIT 10;
+--Most affected nations by disaster type
+select l.nation, e.disaster_type, sum(f.total_affected) as total_affected
+from event_fact f, location_dim l, event_type_dim e
+where f.location_id = l.location_id and f.event_type_id = e.event_type_id
+group by l.nation, e.disaster_type
+order by total_affected desc
+limit 10;

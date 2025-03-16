@@ -42,6 +42,8 @@ CREATE TABLE temperature_dim(
     temperature_id integer PRIMARY KEY,
     ev_year INT, -- in common with date dimension
     nation_iso TEXT, -- in common with location dimension
+    month_int INT,
+    month_string varchar(70),
     temperature_change double precision,
     standard_deviation double precision,
     coal_emission INT,

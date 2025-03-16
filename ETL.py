@@ -1,5 +1,4 @@
 import pandas as pd
-from openpyxl import load_workbook, Workbook
 import json
 
 
@@ -14,13 +13,10 @@ MISSING_NUMBER=0
 #These dictionaries map the name of each month to a number and viceversa
 MONTH_INT={'January': 1, 'February': 2, 'March': 3, 'April': 4,
     'May': 5, 'June': 6, 'July': 7, 'August': 8,
-    'September': 9, 'October': 10, 'November': 11, 'December': 12,
-    'DecJanFeb':13, 'MarAprMay':14, 'JunJulAug':15,
-    'SepOctNov':16, 'Meteorological year':17
+    'September': 9, 'October': 10, 'November': 11, 'December': 12
 }
 
-INT_MONTH = {
-    1: 'January', 2: 'February', 3: 'March', 4: 'April',
+INT_MONTH = {1: 'January', 2: 'February', 3: 'March', 4: 'April',
     5: 'May', 6: 'June', 7: 'July', 8: 'August',
     9: 'September', 10: 'October', 11: 'November', 12: 'December'
 }
@@ -39,8 +35,6 @@ def normalize_table(table):
             elif pd.api.types.is_numeric_dtype(table[column]):
                 table[column]=table[column].fillna(MISSING_NUMBER)
 
-            elif table[column].dtype == 'bool':
-                table[column]=table[column].fillna(False)
     return table
 
 def load_location_coords(path):
@@ -59,8 +53,10 @@ def clean_event(event):
                      ,'Total Damage (\'000 US$)', 'Insured Damage (\'000 US$)','Insured Damage, Adjusted (\'000 US$)', 'Reconstruction Costs (\'000 US$)'
                      , 'Reconstruction Costs, Adjusted (\'000 US$)']
     for col in numeric_columns:
+        #I convert to numeric these columns
         event_cleaned[col] = pd.to_numeric(event_cleaned[col], errors='coerce')
-
+    
+    print('...cleaning location and coordinates...')
     #I fill the null values witht the missing string 'Not specified'
     event_cleaned['Location']=event_cleaned['Location'].fillna(MISSING_STRING_2)
     #Since locations can have more than one place separated by a coma I created an array by using split
@@ -84,50 +80,51 @@ def clean_event(event):
             event_cleaned.at[idx, 'Longitude'] = float(lon)
             #I do a loop in the elements and check whether the element in the table is null
             #then I extract the result and insert it into the row after converting it into a float value
-
-    event_cleaned['Magnitude']= event_cleaned['Magnitude'].astype(float)
-
-
-    event_cleaned['ISO'] = event_cleaned['ISO'].str.lower()
     
-    date_columns = ['Start Year','Start Month', 'Start Day','End Year', 'End Month', 'End Day']
-
-    # Print missing values for the specified columns
-    for column in date_columns:
-        if column in ['Start Year','Start Month', 'Start Day']:
-            event_cleaned[column] = event_cleaned[column].fillna(MISSING_NUMBER+1)
-        event_cleaned[column] = event_cleaned[column].astype('Int64')
-   
-    event_cleaned['End Month']=event_cleaned['End Month'].fillna(event_cleaned['Start Month'])
-    event_cleaned['End Day']=event_cleaned['End Day'].fillna(event_cleaned['Start Day'])
-        
-    event_cleaned['start_date'] = pd.to_datetime(
-        event_cleaned[['Start Year', 'Start Month', 'Start Day']].astype(str).agg('-'.join, axis=1),
-        format='%Y-%m-%d',
-        errors='coerce'
-    )
-    
-    event_cleaned['end_date'] = pd.to_datetime(
-        event_cleaned[['End Year', 'End Month', 'End Day']].astype(str).agg('-'.join, axis=1),
-        format='%Y-%m-%d',
-        errors='coerce'
-    )
-  
-
-    event_cleaned['duration'] = (event_cleaned['end_date'] - event_cleaned['start_date']).dt.days
-
-    
-
-    event_cleaned['duration'] = event_cleaned['duration'].replace(0, 1)
-
-    event_cleaned = event_cleaned.drop(columns=['start_date', 'End Year', 'End Month', 'End Day'])
+    #I rename the columns related to the continent and the geographical area
     event_cleaned= event_cleaned.rename(columns={'Region':'continent', 'Subregion':'area'})
-    #For better clarity I inserted the Start month and the end month also in the string format
+    #I add an Id related to each one of the value in the column
     event_cleaned['continent_id'] = pd.factorize(event_cleaned['continent'])[0]
     event_cleaned['area_id'] = pd.factorize(event_cleaned['area'])[0]
 
     event_cleaned['global_name']= 'World'
+    #I make sure that the magnitude attribute is a float
+    event_cleaned['Magnitude']= event_cleaned['Magnitude'].astype(float)
+    #I lowercase the nations iso code
+    event_cleaned['ISO'] = event_cleaned['ISO'].str.lower()
+    
+    print('...dealing with dates....')
+    #Here I list all the date related column
+    date_columns = ['Start Year','Start Month', 'Start Day','End Year', 'End Month', 'End Day']
 
+    #I do a loop through them and I fill the missing value by adding 1
+    #start/end year have no missing value
+    for column in date_columns:
+        if column in ['Start Month', 'Start Day']:
+            event_cleaned[column] = event_cleaned[column].fillna(MISSING_NUMBER+1)
+        #I ensure that everything is integer
+        event_cleaned[column] = event_cleaned[column].astype('Int64')
+    
+    #I fill the missing endmonths and end days by their starting counterparts
+    event_cleaned['End Month']=event_cleaned['End Month'].fillna(event_cleaned['Start Month'])
+    event_cleaned['End Day']=event_cleaned['End Day'].fillna(event_cleaned['Start Day'])
+    
+    #I create the columns start date and end date, then I compute the difference
+    #and get the duration column
+    event_cleaned['start_date'] = pd.to_datetime(event_cleaned[['Start Year', 'Start Month', 'Start Day']].astype(str).agg('-'.join, axis=1),
+        format='%Y-%m-%d', errors='coerce')
+    
+    event_cleaned['end_date'] = pd.to_datetime(event_cleaned[['End Year', 'End Month', 'End Day']].astype(str).agg('-'.join, axis=1),
+        format='%Y-%m-%d',errors='coerce')
+  
+    event_cleaned['duration'] = (event_cleaned['end_date'] - event_cleaned['start_date']).dt.days
+    #I want that the minimum duration of each event is 1
+    event_cleaned['duration'] = event_cleaned['duration'].replace(0, 1)
+
+    #I drop the non relevant columns
+    event_cleaned = event_cleaned.drop(columns=['start_date', 'End Year', 'End Month', 'End Day'])
+
+    #For better clarity I inserted the Start month and the end month also in the string format
     event_cleaned.rename(columns={'Start Month': 'Start Month Number'}, inplace=True)
     event_cleaned['Start Month'] = event_cleaned['Start Month Number'].map(INT_MONTH)
 
@@ -152,6 +149,8 @@ def clean_temperature(temperature):
                     id_vars=['Area Code', 'Area', 'Months Code', 'Months', 'Element', 'Unit','Element Code'], 
                     var_name='Year', 
                     value_name='Value')
+    
+    print(temperature_shift)
 
     temperature_shift['Year'] = temperature_shift['Year'].str.replace('Y', '').astype(int)
     #I convert the values in the column Year to actual years and integers
@@ -162,24 +161,25 @@ def clean_temperature(temperature):
     cleaned_temperature.columns.name = None
     cleaned_temperature.rename(columns={'Temperature change': 'Temperature Change', 
                            'Standard deviation': 'Standard Deviation'}, inplace=True)
-    #I rename these two new columns according to the value
     
+    #I rename these two new columns according to the value
     cleaned_temperature=normalize_table(cleaned_temperature)
     #I drop the useless columns
     cleaned_temperature=cleaned_temperature.drop(columns=['Area Code', 'Months Code'])
     #I add my own version of the month number
     cleaned_temperature['Month Number'] = cleaned_temperature['Months'].map(MONTH_INT)
-   
-    cleaned_temperature = cleaned_temperature.dropna(subset=['Month Number'])
     #I drop the eventual null rows that contained trimester/semester
+    cleaned_temperature = cleaned_temperature.dropna(subset=['Month Number'])
+    #I make sure that the month number column is an integer
     cleaned_temperature['Month Number'] =cleaned_temperature['Month Number'].astype('Int64')
+    #I convert into numberic the other columns
     numeric_cols= ["Temperature Change",  "Standard Deviation"]
     for c in numeric_cols:
         cleaned_temperature[c] = pd.to_numeric(cleaned_temperature[c], errors='coerce')
+    #I rename all the columns so that they are the same as the data warehouse schema attributes in postgresql
     cleaned_temperature.columns = cleaned_temperature.columns.str.lower().str.replace(' ', '_')
     cleaned_temperature.rename(columns={'area':'nation', 'months':'month_string', 'month_number':'month_int', 'year':'ev_year'}, inplace=True)
-
-
+    
     return cleaned_temperature
 
 def clean_emission(emission):
@@ -190,6 +190,7 @@ def clean_emission(emission):
         emission[c]= emission[c].astype(float)
     #The emission table doesn't need much adjustments
     cleaned_emission=normalize_table(emission)
+    #I rename all the columns so that they are the same as the data warehouse schema attributes in postgresql
     cleaned_emission.columns = cleaned_emission.columns.str.lower().str.replace(' ', '_')
     cleaned_emission.rename(columns={'country':'nation', 'iso_3166-1_alpha-3':'nation_iso',
                                              'coal':'coal_emission','oil':'oil_emission','gas':'gas_emission','cement':'cement_emission','flaring':'flaring_emission',
@@ -222,6 +223,7 @@ def complete_event(event, economy):
     #I drop the useless columns
     merged_table= merged_table.drop(columns=['Size', "Total Damage (\'000 US$)"])
 
+    #I rename all the columns so that they are the same as the data warehouse schema attributes in postgresql
     merged_table.columns = merged_table.columns.str.lower().str.replace(' ', '_')
     merged_table.rename(columns={'iso': 'nation_iso', 'country': 'nation', 'location':'location_name', 
                                              'ofda/bha_response':'response', "aid_contribution_(\'000_us$)": "aid_contribution",
@@ -266,4 +268,5 @@ if __name__=='__main__':
     event_economy_integrated= complete_event(event_cleaned, economy_cleaned)
     event_economy_integrated.to_csv('cleaned_datasets/cleaned_event_econ.csv', sep=';', decimal=',', index=False)
     
+    print('All the sources have been successfully cleaned and transformed!')
     

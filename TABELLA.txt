@@ -37,13 +37,13 @@ Fact table
 id, date_id, location_id, event_type_id, Measures
 
 
+temperature_dim(temperature_id, ev_year, nation_iso,month_int, month_string, temperature_change, standard_deviation, coal_emission, oil_emission, gas_emission, cement_emission, flaring_emission, other_emission, per_capita_emission)
 
+event_type_dim(event_type_id, disaster_group, disaster_subgroup, disaster_type, disaster_subtype, event_name, magnitude, magnitude_scale, duration, response, appeal, declaration, end_date)
 
+event_fact(id, date_id, location_id, event_type_id, total_deaths, num_injured, num_affected, num_homeless, total_affected, aid_contribution,reconstruction_cost, reconstruction_cost_adjusted, insured_damage, insured_damage_adjusted, total_damage, total_damage_adjusted)
 
+date_dim(date_id,decade, ev_year, month_int, month_string, ev_day, tem_em_id)
 
-
-
-
-
-
+location_dim(location_id,continent, continent_id, area, area_id, nation, nation_iso, location_name, latitude, longitude, tem_em_id)
 

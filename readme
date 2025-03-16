@@ -1,3 +1,5 @@
+# Data management project Simone laganà 1946083
+
 These are the folders
 - /datasets 
    contains the raw datasets downloaded from the links
@@ -15,7 +17,7 @@ The first optional thing is to execute the coordinates.py file which generates t
 Then one must execute the ETL.py files which modifies the datasets by performing the extraction, cleansing and transformation operation
 outputting the cleaned dataset in the /cleaned_datasets folder
 
-Then one must execute the file db.py where there is the loading phase, the table are unified and then are added into postgresql.
+Then one must execute the file loading_db.py where there is the loading phase, the table are unified and then are added into postgresql.
 The data for the connection (made using pgadmin) is in the utils/config.js file.
 
 The file query_display.py performs the queries in the folder /db_tables

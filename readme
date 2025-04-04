@@ -6,7 +6,7 @@ These are the folders
 - /cleaned_datasets
    contains the dataset after the etl process
 - /db_tables
-   sql files for the snowflake schema
+   sql files for the star schema and the queries
 - /utils
    there are the configuration file for the sql database. Here there 
    is also the generated json file containing the missing coordinates
